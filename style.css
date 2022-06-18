@@ -1,0 +1,22 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #ffffff;
+    background-image: linear-gradient(151deg, #ffffff 0%, #a9b7b3 100%);
+}
+
+header {
+    min-height: 100px;
+}
+
+main {
+    background-color: #a9b7b3;
+    min-height: 600px;
+}
+
+footer {
+    background-color: lightgray;
+    min-height: 200px;
+}
