@@ -13,10 +13,9 @@ header {
 
 main {
     background-color: #a9b7b3;
-    min-height: 600px;
+    min-height: 300px;
 }
 
-footer {
-    background-color: lightgray;
+section {
     min-height: 200px;
 }

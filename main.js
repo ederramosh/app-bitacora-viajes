@@ -8,12 +8,38 @@ const bitacora = [{
     zona: 'San Salvador',
 }];
 
+const formulario = document.getElementById('formulario');
+
+
+// Eventos
+formulario.addEventListener('submit', validarFormulario);
+
+
+
+// Funciones JavaScript
+
 function mostrarInformacion() {
     //aqui va el codigo que carga los viajes realizados
+
+    //Limpiamos la tabla
+    document.getElementById('tablaBitacora').innerHTML = '';
+
     bitacora.forEach( ( viaje, indice ) => {
         const { nombre, telefono, tipoPago, monto, fecha, hora, zona } = viaje;
-        console.log(`Indice: ${indice + 1} - Nombre: ${nombre} - telefono: ${telefono} - Tipo de Pago: ${tipoPago}`);
-    })
+        
+        document.getElementById('tablaBitacora').innerHTML += `
+        <tr>
+            <th scope="row">${indice + 1}</th>
+            <td>${nombre}</td>
+            <td>${telefono}</td>
+            <td>${tipoPago}</td>
+            <td>$${monto}</td>
+            <td>${fecha}</td>
+            <td>${hora}</td>
+            <td>${zona}</td>
+        </tr>
+        `
+    });
 }
 
 function adicionarViaje( nombre, telefono, tipoPago, monto, fecha, hora, zona ) {
@@ -51,8 +77,32 @@ function eliminarViaje(indice) {
     bitacora.splice(indice,1);
 }
 
+function validarFormulario(e) {
+    e.preventDefault()
+    
+    let nombre = document.getElementById('nombre').value;
+    let telefono = document.getElementById('telefono').value;
+    let tipoPago = document.getElementById('tipoPago').value;
+    let monto = document.getElementById('monto').value;
+    let fecha = document.getElementById('fecha').value;
+    let hora = document.getElementById('hora').value;
+    let zona = document.getElementById('zona').value;
+    
+    if( nombre !== '' && telefono !== '' && tipoPago !== '' && monto !== '' && fecha !== '' && hora !== '' && zona !== '' ) {
+        adicionarViaje( nombre, telefono, tipoPago, monto, fecha, hora, zona );
+        mostrarInformacion();
+        limpiarForm();
+    } else {
+        console.log('no paso');
+    }
+}
+
+function limpiarForm() {
+    document.getElementById('formulario').reset();
+}
+
 //---------- test ----------
-adicionarViaje('Alexander', '22551111', 'efectivo', 15.55, '6/5/2022', '15:30', 'Escalon');
+adicionarViaje('Alexander', '22551111', 'Efectivo', 15.55, '6/5/2022', '15:30', 'Escalon');
 // editarViaje('Eustaquio', '22551111', 'efectivo', 15.55, '6/5/2022', '15:30', 'Merliot');
 // eliminarViaje(1);
 mostrarInformacion();
