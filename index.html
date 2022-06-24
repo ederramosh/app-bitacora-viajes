@@ -20,6 +20,7 @@
 
         <form id="formulario">
             <div class="row">
+                <input type="text" id="indice" hidden>
                 <div class="col-md-6 form-floating mb-3">
                     <input type="text" class="form-control" id="nombre" placeholder="Nombre">
                     <label for="nombre" class="ms-2">Nombre</label>
@@ -63,12 +64,15 @@
                 <label for="zona">Zona</label>
             </div>
 
-            <div class="pb-3">
-                <button type="submit" class="btn btn-secondary">Ingresar</button>
+            <div class="pb-3" id="botones">
+                <button type="submit" class="btn btn-secondary" id="ingresar">Ingresar</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
             </div>
 
         </form>
+        <div id="mensaje">
+
+        </div>
     </main>
     <section class="container">
         <table class="table">
