@@ -10,15 +10,12 @@ const bitacora = [{
 
 const formulario = document.getElementById('formulario');
 
-
 // Eventos
-ingresar.addEventListener('click', ingresarInformacion);
+formulario.addEventListener('submit', ingresarInformacion);
 
 
 // Funciones JavaScript
-
 function mostrarInformacion() {
-    //aqui va el codigo que carga los viajes realizados
 
     //Limpiamos la tabla
     document.getElementById('tablaBitacora').innerHTML = '';
@@ -45,6 +42,29 @@ function mostrarInformacion() {
     });
 }
 
+function ingresarInformacion(e) {
+    e.preventDefault()
+
+    let indice = document.getElementById('indice').value;
+    let nombre = document.getElementById('nombre').value;
+    let telefono = document.getElementById('telefono').value;
+    let tipoPago = document.getElementById('tipoPago').value;
+    let monto = document.getElementById('monto').value;
+    let fecha = document.getElementById('fecha').value;
+    let hora = document.getElementById('hora').value;
+    let zona = document.getElementById('zona').value;
+
+    if(indice === '') {
+        adicionarViaje( nombre, telefono, tipoPago, monto, fecha, hora, zona );
+        mostrarInformacion();
+        limpiarForm();
+    } else {
+        editarInformacion( indice, nombre, telefono, tipoPago, monto, fecha, hora, zona )
+        mostrarInformacion();
+        limpiarForm();
+    }
+}
+
 function editarBoton(indice) {
     document.getElementById('indice').value = indice;
     nombre.value = bitacora[indice].nombre;
@@ -54,25 +74,10 @@ function editarBoton(indice) {
     fecha.value = bitacora[indice].fecha;
     hora.value = bitacora[indice].hora;
     zona.value = bitacora[indice].zona;
-
-    const ingresarBtn = document.getElementById('ingresar');
-    if(ingresarBtn != null) {
-        ingresarBtn.remove();
-        const editarBtn = document.createElement('button');
-        editarBtn.id = 'editar';
-        editarBtn.type = 'submit';
-        editarBtn.textContent = 'Editar';
-        editarBtn.className = 'btn btn-secondary';
-        editarBtn.addEventListener('click', editarInformacion);
-
-        let botones = document.getElementById('botones');
-        botones.insertBefore(editarBtn, botones.firstChild);
-    }
 }
 
 function adicionarViaje( nombre, telefono, tipoPago, monto, fecha, hora, zona ) {
     //aqui va el codigo de adicion de viaje
-    // ----- validacion que todo vaya lleno ----
     const nuevoViaje = {
         nombre,
         telefono,
@@ -85,71 +90,27 @@ function adicionarViaje( nombre, telefono, tipoPago, monto, fecha, hora, zona ) 
     bitacora.push( nuevoViaje );
 }
 
+function editarInformacion( indice, nombre, telefono, tipoPago, monto, fecha, hora, zona ) {
+    //Se guarda la informacion editada
+    bitacora[indice].nombre = nombre;
+    bitacora[indice].telefono = telefono;
+    bitacora[indice].tipoPago = tipoPago;
+    bitacora[indice].monto = monto;
+    bitacora[indice].fecha = fecha;
+    bitacora[indice].hora = hora;
+    bitacora[indice].zona = zona;
+    
+}
+
 function eliminarViaje(indice) {
     bitacora.splice(indice,1);
     mostrarInformacion();
 }
 
-function ingresarInformacion(e) {
-    e.preventDefault()
-
-    let nombre = document.getElementById('nombre').value;
-    let telefono = document.getElementById('telefono').value;
-    let tipoPago = document.getElementById('tipoPago').value;
-    let monto = document.getElementById('monto').value;
-    let fecha = document.getElementById('fecha').value;
-    let hora = document.getElementById('hora').value;
-    let zona = document.getElementById('zona').value;
-
-    if( validarFormulario(nombre, telefono, tipoPago, monto, fecha, hora, zona) ) {
-        adicionarViaje( nombre, telefono, tipoPago, monto, fecha, hora, zona );
-        mostrarInformacion();
-        limpiarForm();
-    } else {
-        //aqui se llama la funcion que no estan todos los campos
-        console.log('no tiene todos los campos llenos');
-    }
-}
-
-function editarInformacion(e) {
-    e.preventDefault();
-    let indice = document.getElementById('indice').value;
-    bitacora[indice].nombre = document.getElementById('nombre').value;
-    bitacora[indice].telefono = document.getElementById('telefono').value;
-    bitacora[indice].tipoPago = document.getElementById('tipoPago').value;
-    bitacora[indice].monto = document.getElementById('monto').value;
-    bitacora[indice].fecha = document.getElementById('fecha').value;
-    bitacora[indice].hora = document.getElementById('hora').value;
-    bitacora[indice].zona = document.getElementById('zona').value;
-    mostrarInformacion();
-    limpiarForm();
-
-    const EditarBtn = document.getElementById('editar');
-    if(EditarBtn != null) {
-        EditarBtn.remove();
-        const ingresarBtn = document.createElement('button');
-        ingresarBtn.id = 'ingresar';
-        ingresarBtn.type = 'submit';
-        ingresarBtn.textContent = 'Ingresar';
-        ingresarBtn.className = 'btn btn-secondary';
-        ingresarBtn.addEventListener('click', ingresarInformacion);
-
-        let botones = document.getElementById('botones');
-        botones.insertBefore(ingresarBtn, botones.firstChild);
-    }
-}
-
-function validarFormulario(nombre, telefono, tipoPago, monto, fecha, hora, zona) {
-    if( nombre !== '' && telefono !== '' && tipoPago !== '' && monto !== '' && fecha !== '' && hora !== '' && zona !== '' ) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function limpiarForm() {
     document.getElementById('formulario').reset();
 }
+
 
 //---------- test ----------
 adicionarViaje('Alexander', '22551111', 'Efectivo', 15.55, '2022-06-15', '15:30', 'Escalon');

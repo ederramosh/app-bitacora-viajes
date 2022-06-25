@@ -22,19 +22,22 @@
             <div class="row">
                 <input type="text" id="indice" hidden>
                 <div class="col-md-6 form-floating mb-3">
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
-                    <label for="nombre" class="ms-2">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    <label for="nombre" class="ms-2 form-label">Nombre</label>
                 </div>
                 <div class="col-md-6 form-floating mb-3">
-                    <input type="tel" class="form-control" id="telefono" placeholder="Telefono">
+                    <input type="tel" class="form-control" id="telefono" placeholder="Telefono" required>
                     <label for="floatingPassword" class="ms-2">Telefono</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-floating mb-3">
-                    <select class="form-select ps-2" id="tipoPago" aria-label="Metodo de Pago">
-                        <option selected>Seleccione de Pago</option>
+                    <select class="form-select ps-2" id="tipoPago" aria-label="Metodo de Pago" required>
+                        <option selected disabled value="">Seleccione de Pago</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Tarjeta">Tarjeta</option>
                     </select>
@@ -42,25 +45,25 @@
                 </div>
 
                 <div class="col-md-6 form-floating mb-3">
-                    <input type="text" class="form-control" id="monto" placeholder="00.00">
+                    <input type="text" class="form-control" id="monto" placeholder="00.00" required>
                     <label for="monto" class="ms-2">Monto de Pago</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-floating mb-3">
-                    <input type="date" class="form-control" id="fecha" placeholder="Fecha">
+                    <input type="date" class="form-control" id="fecha" placeholder="Fecha" required>
                     <label for="fecha" class="ms-2">Fecha</label>
                 </div>
 
                 <div class="col-md-6 form-floating mb-3">
-                    <input type="time" class="form-control" id="hora" placeholder="Hora">
+                    <input type="time" class="form-control" id="hora" placeholder="Hora" required>
                     <label for="hora" class="ms-2">Hora</label>
                 </div>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="zona" placeholder="Zona">
+                <input type="text" class="form-control" id="zona" placeholder="Zona" required>
                 <label for="zona">Zona</label>
             </div>
 
@@ -70,7 +73,7 @@
             </div>
 
         </form>
-        <div id="mensaje">
+        <div id="contenedorMensaje">
 
         </div>
     </main>
@@ -101,7 +104,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="./main.js"></script>
-
     </body>
 
 </html>
