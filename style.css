@@ -20,3 +20,7 @@ main {
 section {
     min-height: 200px;
 }
+
+footer {
+    color: rgba(0, 0, 0, 0.521);
+}
