@@ -44,7 +44,7 @@ function mostrarInformacion() {
             <th scope="row">${indice + 1}</th>
             <td>${nombre}</td>
             <td>${telefono}</td>
-            <td>${tipoPago}</td>
+            <td class="d-none d-md-table-cell">${tipoPago}</td>
             <td>$${monto}</td>
             <td class="d-none d-md-table-cell">${fecha}</td>
             <td class="d-none d-md-table-cell">${hora}</td>
